@@ -1,0 +1,32 @@
+\documentclass[11pt, letterpaper]{article}
+\author{Ayberk Tosun}
+\title{Notes on Cut Elimination}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{mathpazo}
+\linespread{1.05}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{ebproof}
+
+\usepackage{listings}
+\lstset{
+  basicstyle=\footnotesize\ttfamily
+}
+
+\input{../../latex-basis/basis.tex}
+
+\definecolor{red}{RGB}{227, 56, 61}
+\definecolor{blue}{RGB}{19, 80, 177}
+
+\newcommand{\ruleName}[1]{{\color{blue} #1}}
+\newcommand{\mkLabel}[1]{\RightLabel{\ruleName{#1}}}
+
+\newcommand{\conjIntro}{\ruleName{\times I}}
+\newcommand{\conjElim}{\ruleName{\times E}}
+
+\newcommand{\assert}[1]{{\color{Sepia} #1}\ {\color{gray} true}}
+\newcommand{\prfName}[1]{{\color{red} \mathcal{#1}}}
+\newcommand{\subst}[3]{[#1 / \ruleName{#2}] #3}
+
+\newcommand{\reduction}{\Longrightarrow_R}
+\newcommand{\expansion}{\Longrightarrow_E}
