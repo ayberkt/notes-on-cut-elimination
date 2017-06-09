@@ -7,6 +7,14 @@
 \linespread{1.05}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{ebproof}
+\usepackage{xparse}
+\usepackage[euler-digits]{eulervm}
+
+\NewDocumentCommand \sequent { o m }{
+  \IfNoValueTF{#1}
+    { \Gamma      \Longrightarrow {#2}  }
+    { \Gamma , {#1} \Longrightarrow {#2} }
+}
 
 \usepackage{listings}
 \lstset{

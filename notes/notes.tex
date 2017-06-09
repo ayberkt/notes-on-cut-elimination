@@ -1,6 +1,23 @@
-% arara: lualatex
+% arara: xelatex
 \input{preamble.tex}
 
 \begin{document}
 \maketitle
+
+\section{Admissibility of Cut}
+
+\begin{theorem}[Cut]
+  If $\sequent{A}$ and $\sequent[A]{C}$ then $\sequent{C}$.
+\end{theorem}
+\begin{proof}
+  Suppose that we have the derivations
+  \begin{enumerate}
+    \item $\prfName{D}$ for $\sequent{A}$ and
+    \item $\prfName{E}$ for $\sequent[A]{C}$.
+  \end{enumerate}
+  We need to construct a derivation $\prfName{F}$ for $\sequent{}{C}$.
+  We consider the following six cases.
+
+  \vspace{1em}\todo[color=LimeGreen, inline]{List the cases.}
+\end{proof}
 \end{document}
