@@ -12,12 +12,33 @@
 \begin{proof}
   Suppose that we have the derivations
   \begin{enumerate}
-    \item $\prfName{D}$ for $\sequent{A}$ and
-    \item $\prfName{E}$ for $\sequent[A]{C}$.
+    \item $\prf{D}$ for $\sequent{A}$ and
+    \item $\prf{E}$ for $\sequent[A]{C}$.
   \end{enumerate}
-  We need to construct a derivation $\prfName{F}$ for $\sequent{}{C}$.
+  We need to construct a derivation $\prf{F}$ for $\sequent{}{C}$.
   We consider the following six cases.
 
-  \vspace{1em}\todo[color=LimeGreen, inline]{List the cases.}
+  \paragraph{Case: $\prf{D}$ is an initial sequent.} In this case
+  $\prp{A}$ must be some atomic proposition $\prp{P}$ and $\prf{D}$
+  must have the form
+  \[
+      \begin{prooftree}
+        \infer0[init]{\sequentHat[P]{P}}
+      \end{prooftree}
+  \]
+  So $\Gamma = (\widehat{\Gamma}, \prp{P})$ which implies that $\prf{E}$ proves
+  $\sequentHat[\prp{P}, \prp{P}]{C}$. From this, it follows by contraction
+  that $\sequentHat[\prp{P}]{C}$ and then since $\Gamma = (\Gamma, \prp{P})$,
+  it is the case that $\sequent{\prp{C}}$.
+
+  \paragraph{Case: $\prf{E}$ is an initial sequent that uses the cut formula.}
+  Foo
+  \todo[color=LimeGreen, inline]{\textsc{Complete case.}}
+
+  \paragraph{Case: $\prf{E}$ is an initial sequent that does not use the cut
+  formula.} Foo
+
+  \todo[inline, color=LimeGreen]{\textsc{Complete case.}}
+
 \end{proof}
 \end{document}
