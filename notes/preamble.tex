@@ -10,10 +10,19 @@
 \usepackage{xparse}
 \usepackage[euler-digits]{eulervm}
 
+\definecolor{red}{RGB}{227, 56, 61}
+\definecolor{blue}{RGB}{19, 80, 177}
+
 \NewDocumentCommand \sequent { o m }{
   \IfNoValueTF{#1}
     { \Gamma      \Longrightarrow {#2}  }
-    { \Gamma , {#1} \Longrightarrow {#2} }
+    { \Gamma , {\color{blue} #1} \Longrightarrow {#2} }
+}
+
+\NewDocumentCommand \sequentHat { o m }{
+  \IfNoValueTF{#1}
+    { \widehat{\Gamma}      \Longrightarrow {\color{blue} #2}  }
+    { \widehat{\Gamma} , {\color{blue} #1} \Longrightarrow {\color{blue} #2} }
 }
 
 \usepackage{listings}
@@ -23,9 +32,6 @@
 
 \input{../../latex-basis/basis.tex}
 
-\definecolor{red}{RGB}{227, 56, 61}
-\definecolor{blue}{RGB}{19, 80, 177}
-
 \newcommand{\ruleName}[1]{{\color{blue} #1}}
 \newcommand{\mkLabel}[1]{\RightLabel{\ruleName{#1}}}
 
@@ -33,7 +39,8 @@
 \newcommand{\conjElim}{\ruleName{\times E}}
 
 \newcommand{\assert}[1]{{\color{Sepia} #1}\ {\color{gray} true}}
-\newcommand{\prfName}[1]{{\color{red} \mathcal{#1}}}
+\newcommand{\prf}[1]{{\color{red} \mathcal{#1}}}
+\newcommand{\prp}[1]{{\color{blue} #1}}
 \newcommand{\subst}[3]{[#1 / \ruleName{#2}] #3}
 
 \newcommand{\reduction}{\Longrightarrow_R}
