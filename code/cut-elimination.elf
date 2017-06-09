@@ -1,0 +1,16 @@
+i : type.
+o : type.
+
+→    : o -> o -> o.                                          %infix right 10 →.
+∧    : o -> o -> o.                                          %infix none  9  ∧.
+∨    : o -> o -> o.                                          %infix none  8  ∨.
+∃    : (i -> o) -> o.
+∀    : (i -> o) -> o.
+
+hyp  : o -> type.
+conc : o -> type.
+
+axiom : (hyp A -> conc A).
+
+impl-left  : conc A -> (hyp B -> conc C) -> (hyp (A → B) -> conc C).
+impl-right : (hyp A -> conc B) -> conc (A → B).
