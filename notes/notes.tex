@@ -122,7 +122,7 @@ which can only be verified if it is already on the left.
   must have the form
   \[
       \begin{prooftree}
-        \infer0[init]{\sequentHat[P]{P}}
+        \infer0[$\initRule$]{\sequentHat[P]{P}}
       \end{prooftree}
   \]
   So $\Gamma = (\widehat{\Gamma}, \prp{P})$ which implies that $\prf{E}$ proves
@@ -131,13 +131,23 @@ which can only be verified if it is already on the left.
   it is the case that $\sequent{\prp{C}}$.
 
   \paragraph{Case: $\prf{E}$ is an initial sequent that uses the cut formula.}
-  Foo
-  \todo[color=LimeGreen, inline]{\textsc{Complete case.}}
+  \quad
+  \todo[inline, color=LimeGreen]{Complete.}
 
   \paragraph{Case: $\prf{E}$ is an initial sequent that does not use the cut
-  formula.} Foo
+  formula.}\quad\todo[inline, color=LimeGreen]{Complete}
 
-  \todo[inline, color=LimeGreen]{\textsc{Complete case.}}
+  \paragraph{Case: $\prp{A}$ is the principal formula of the final inference
+  in both $\prf{D}$ and $\prf{E}$.}\quad
+  \todo[inline, color=LimeGreen]{Complete.}
+
+  \paragraph{Case: $\prp{A}$ is not the principial formula of the last
+  inference in $\prf{D}$.}\quad
+  \todo[inline, color=LimeGreen]{Complete.}
+
+  \paragraph{Case: $\prp{A}$ is not the principal formula of the last
+  inference in $\prf{E}$.}\quad
+  \todo[inline, color=LimeGreen]{Complete.}
 
 \end{proof}
 
