@@ -1,8 +1,107 @@
 % arara: xelatex
+% arara: bibtex
+% arara: xelatex
+% arara: xelatex
 \input{preamble.tex}
 
 \begin{document}
 \maketitle
+
+\section{Preliminaries}
+
+Sequent calculus was conceived by Gentzen as a convenient intermediary language
+for proving the cut-elimination theorem, which Girard \cite[pg.
+106]{locus-solum} goes as far to deem ``the main achievement of Gentzen''.
+Further in Girard's words \cite[pg. 106]{locus-solum}:
+\begin{quote}
+  The cut-elimination theorem, which basically yields an algorithm to eliminate
+  cut is surprising, since it relates to absolutely opposite views of logic.
+  The deductive, or \emph{implicit} a pproach is about lemmas which contain
+  main ideas that one combines together like modules in programming:
+  a real proof is basically the cut rule. The \emph{explicit} approach is
+  without cut, and in practice is never used, but by computers, since all
+  ideas, i.e., lemmas, have disappeared. But a computer an idiot with big
+  brains, can use cut-elimination, either to transform an implicit proof into
+  an explicit one, or simply to look for a cut-free proof, since the absence
+  of cut restricts proof-search to subformulas. Cut-elimination is a
+  completeness theorem (the real one indeed), saying that the explicit
+  approach is as strong as the implicit one.
+\end{quote}
+
+Even setting aside the proof of cut-elimination, sequent calculus exposes the
+fundamental symmetries of logic, which makes it worth studying in itself.
+
+Our sequent calculus is based on the following inference rules.
+
+\[
+  \begin{prooftree}
+    \hypo{\sequent{\prp{A}}}
+    \hypo{\sequent{\prp{B}}}
+    \infer2[$\rightRule{\land R}$]{\sequent{\prp{A \land B}}}
+  \end{prooftree}
+  \quad
+  \begin{prooftree}
+    \hypo{\sequent[\prp{A \land B}, \prp{A}]{\prp{C}}}
+    \infer1[$\leftRule{\land L_1}$]{\sequent[\prp{A \land B}]{\prp{C}}}
+  \end{prooftree}
+  \quad
+  \quad
+  \begin{prooftree}
+    \hypo{\sequent[\prp{A \land B}, \prp{B}]{\prp{C}}}
+    \infer1[$\leftRule{\land L_2}$]{\sequent[\prp{A \land B}]{\prp{C}}}
+  \end{prooftree}
+\]
+\vspace{0.5em}
+\[
+  \begin{prooftree}
+    \infer0[\rightRule{\top R}]{\sequent{\prp{\top}}}
+  \end{prooftree}
+\]
+\vspace{0.5em}
+\[
+  \begin{prooftree}
+    \hypo{\sequent[\prp{A \lor B}, \prp{A}]{C}}
+    \hypo{\sequent[\prp{A \lor B}, \prp{B}]{C}}
+    \infer2[\leftRule{\lor L}]{\sequent[\prp{A \lor B}]{\prp{C}}}
+  \end{prooftree}
+  \quad
+  \begin{prooftree}
+    \hypo{\sequent{\prp{A}}}
+    \infer1[$\rightRule{\vee R_1}$]{\sequent{\prp{A \lor B}}}
+  \end{prooftree}
+  \quad
+  \begin{prooftree}
+    \hypo{\sequent{\prp{B}}}
+    \infer1[$\rightRule{\vee R_2}$]{\sequent{\prp{A \lor B}}}
+  \end{prooftree}
+\]
+\vspace{0.5em}
+\[
+  \begin{prooftree}
+    \hypo{\sequent[\prp{A}]{\prp{B}}}
+    \infer1[\rightRule{\supset R}]{\sequent{A \supset B}}
+  \end{prooftree}
+  \quad
+  \begin{prooftree}
+    \hypo{\sequent[\prp{A \supset B}]{\prp{A}}}
+    \hypo{\sequent[\prp{A \supset B}, \prp{B}]{C}}
+    \infer2[\leftRule{\supset L}]{\sequent[\prp{A \supset B}]{\prp{C}}}
+  \end{prooftree}
+\]
+\vspace{0.5em}
+\[
+  \begin{prooftree}
+    \infer0[\leftRule{\bot L}]{\sequent[\prp{\bot}]{C}}
+  \end{prooftree}
+\]
+
+In addition to these, we have the $\initRule$ rule to verify an atomic formula
+which can only be verified if it is already on the left.
+\[
+  \begin{prooftree}
+    \infer0[$\initRule$]{\sequent[\prp{P}]{\prp{P}}}
+  \end{prooftree}
+\]
 
 \section{Admissibility of Cut}
 
@@ -41,4 +140,7 @@
   \todo[inline, color=LimeGreen]{\textsc{Complete case.}}
 
 \end{proof}
+
+\bibliographystyle{alpha}
+\bibliography{bibliography}
 \end{document}
