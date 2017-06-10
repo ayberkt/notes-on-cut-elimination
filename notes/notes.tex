@@ -54,7 +54,7 @@ Our sequent calculus is based on the following inference rules.
 \vspace{0.5em}
 \[
   \begin{prooftree}
-    \infer0[\rightRule{\top R}]{\sequent{\top}}
+    \infer0[$\rightRule{\top R}$]{\sequent{\top}}
   \end{prooftree}
 \]
 \vspace{0.5em}
@@ -62,7 +62,7 @@ Our sequent calculus is based on the following inference rules.
   \begin{prooftree}
     \hypo{\sequent[A \lor B, A]{C}}
     \hypo{\sequent[A \lor B, B]{C}}
-    \infer2[\leftRule{\lor L}]{\sequent[A \lor B]{C}}
+    \infer2[$\leftRule{\lor L}$]{\sequent[A \lor B]{C}}
   \end{prooftree}
   \quad
   \begin{prooftree}
@@ -79,19 +79,19 @@ Our sequent calculus is based on the following inference rules.
 \[
   \begin{prooftree}
     \hypo{\sequent[A]{B}}
-    \infer1[\rightRule{\supset R}]{\sequent{A \supset B}}
+    \infer1[$\rightRule{\supset R}$]{\sequent{A \supset B}}
   \end{prooftree}
   \quad
   \begin{prooftree}
     \hypo{\sequent[A \supset B]{A}}
     \hypo{\sequent[A \supset B, B]{C}}
-    \infer2[\leftRule{\supset L}]{\sequent[A \supset B]{C}}
+    \infer2[$\leftRule{\supset L}$]{\sequent[A \supset B]{C}}
   \end{prooftree}
 \]
 \vspace{0.5em}
 \[
   \begin{prooftree}
-    \infer0[\leftRule{\bot L}]{\sequent[\bot]{C}}
+    \infer0[$\leftRule{\bot L}$]{\sequent[\bot]{C}}
   \end{prooftree}
 \]
 
