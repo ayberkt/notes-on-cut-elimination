@@ -35,63 +35,63 @@ Our sequent calculus is based on the following inference rules.
 
 \[
   \begin{prooftree}
-    \hypo{\sequent{\prp{A}}}
-    \hypo{\sequent{\prp{B}}}
-    \infer2[$\rightRule{\land R}$]{\sequent{\prp{A \land B}}}
+    \hypo{\sequent{A}}
+    \hypo{\sequent{B}}
+    \infer2[$\rightRule{\land R}$]{\sequent{A \land B}}
   \end{prooftree}
   \quad
   \begin{prooftree}
-    \hypo{\sequent[\prp{A \land B}, \prp{A}]{\prp{C}}}
-    \infer1[$\leftRule{\land L_1}$]{\sequent[\prp{A \land B}]{\prp{C}}}
+    \hypo{\sequent[A \land B][A]{C}}
+    \infer1[$\leftRule{\land L_1}$]{\sequent[A \land B]{C}}
   \end{prooftree}
   \quad
   \quad
   \begin{prooftree}
-    \hypo{\sequent[\prp{A \land B}, \prp{B}]{\prp{C}}}
-    \infer1[$\leftRule{\land L_2}$]{\sequent[\prp{A \land B}]{\prp{C}}}
+    \hypo{\sequent[A \land B][B]{C}}
+    \infer1[$\leftRule{\land L_2}$]{\sequent[A \land B]{C}}
   \end{prooftree}
 \]
 \vspace{0.5em}
 \[
   \begin{prooftree}
-    \infer0[\rightRule{\top R}]{\sequent{\prp{\top}}}
+    \infer0[\rightRule{\top R}]{\sequent{\top}}
   \end{prooftree}
 \]
 \vspace{0.5em}
 \[
   \begin{prooftree}
-    \hypo{\sequent[\prp{A \lor B}, \prp{A}]{C}}
-    \hypo{\sequent[\prp{A \lor B}, \prp{B}]{C}}
-    \infer2[\leftRule{\lor L}]{\sequent[\prp{A \lor B}]{\prp{C}}}
+    \hypo{\sequent[A \lor B, A]{C}}
+    \hypo{\sequent[A \lor B, B]{C}}
+    \infer2[\leftRule{\lor L}]{\sequent[A \lor B]{C}}
   \end{prooftree}
   \quad
   \begin{prooftree}
-    \hypo{\sequent{\prp{A}}}
-    \infer1[$\rightRule{\vee R_1}$]{\sequent{\prp{A \lor B}}}
+    \hypo{\sequent{A}}
+    \infer1[$\rightRule{\vee R_1}$]{\sequent{A \lor B}}
   \end{prooftree}
   \quad
   \begin{prooftree}
-    \hypo{\sequent{\prp{B}}}
-    \infer1[$\rightRule{\vee R_2}$]{\sequent{\prp{A \lor B}}}
+    \hypo{\sequent{B}}
+    \infer1[$\rightRule{\vee R_2}$]{\sequent{A \lor B}}
   \end{prooftree}
 \]
 \vspace{0.5em}
 \[
   \begin{prooftree}
-    \hypo{\sequent[\prp{A}]{\prp{B}}}
+    \hypo{\sequent[A]{B}}
     \infer1[\rightRule{\supset R}]{\sequent{A \supset B}}
   \end{prooftree}
   \quad
   \begin{prooftree}
-    \hypo{\sequent[\prp{A \supset B}]{\prp{A}}}
-    \hypo{\sequent[\prp{A \supset B}, \prp{B}]{C}}
-    \infer2[\leftRule{\supset L}]{\sequent[\prp{A \supset B}]{\prp{C}}}
+    \hypo{\sequent[A \supset B]{A}}
+    \hypo{\sequent[A \supset B, B]{C}}
+    \infer2[\leftRule{\supset L}]{\sequent[A \supset B]{C}}
   \end{prooftree}
 \]
 \vspace{0.5em}
 \[
   \begin{prooftree}
-    \infer0[\leftRule{\bot L}]{\sequent[\prp{\bot}]{\prp{C}}}
+    \infer0[\leftRule{\bot L}]{\sequent[\bot]{C}}
   \end{prooftree}
 \]
 
@@ -99,7 +99,7 @@ In addition to these, we have the $\initRule$ rule to verify an atomic formula
 which can only be verified if it is already on the left.
 \[
   \begin{prooftree}
-    \infer0[$\initRule$]{\sequent[\prp{P}]{\prp{P}}}
+    \infer0[$\initRule$]{\sequent[P]{P}}
   \end{prooftree}
 \]
 
@@ -111,28 +111,28 @@ which can only be verified if it is already on the left.
 \begin{proof}
   Suppose that we have the derivations
   \begin{enumerate}
-    \item $\prf{D}$ for $\sequent{A}$ and
-    \item $\prf{E}$ for $\sequent[A]{C}$.
+    \item $\drv{D}$ for $\sequent{A}$ and
+    \item $\drv{E}$ for $\sequent[A]{C}$.
   \end{enumerate}
-  We need to construct a derivation $\prf{F}$ for $\sequent{}{C}$.
+  We need to construct a derivation $\drv{F}$ for $\sequent{}{C}$.
   We consider the following six cases.
 
-  \paragraph{Case: $\prf{D}$ is an initial sequent.} In this case
-  $\prp{A}$ must be some atomic proposition $\prp{P}$ and $\prf{D}$
+  \paragraph{Case: $\drv{D}$ is an initial sequent.} In this case
+  $\prp{A}$ must be some atomic proposition $\prp{P}$ and $\drv{D}$
   must have the form
   \[
       \begin{prooftree}
         \infer0[$\initRule$]{\sequentHat[P]{P}}
       \end{prooftree}
   \]
-  So $\Gamma = (\widehat{\Gamma}, \prp{P})$ which implies that $\prf{E}$ proves
+  So $\Gamma = (\widehat{\Gamma}, \prp{P})$ which implies that $\drv{E}$ proves
   $\sequentHat[\prp{P}, \prp{P}]{C}$. From this, it follows by contraction
   that $\sequentHat[\prp{P}]{C}$ and then since $\Gamma = (\Gamma, \prp{P})$,
   it is the case that $\sequent{\prp{C}}$.
 
-  \paragraph{Case: $\prf{E}$ is an initial sequent that uses the cut formula.}
+  \paragraph{Case: $\drv{E}$ is an initial sequent that uses the cut formula.}
   In this case $\prp{C} = \prp{P}$ where $\prp{P}$ is some atomic formula,
-  $\Gamma = (\widehat{\Gamma}, \prp{P})$ and $\prf{E}$ has the form:
+  $\Gamma = (\widehat{\Gamma}, \prp{P})$ and $\drv{E}$ has the form:
   \[
     \begin{prooftree}
       \infer0[$\initRule$]{\sequentHat[\prp{P}, \prp{A}]{\prp{P}}}
@@ -142,19 +142,19 @@ which can only be verified if it is already on the left.
   and the derivation would remain valid for $\sequentHat[\prp{P}]{\prp{P}}$.
   Hence we have $\sequent{\prp{P}}$ i.e., $\sequent{\prp{C}}$.
 
-  \paragraph{Case: $\prf{E}$ is an initial sequent that does not use the cut
+  \paragraph{Case: $\drv{E}$ is an initial sequent that does not use the cut
   formula.}\quad\todo[inline, color=LimeGreen]{Complete}
 
   \paragraph{Case: $\prp{A}$ is the principal formula of the final inference
-  in both $\prf{D}$ and $\prf{E}$.}\quad
+  in both $\drv{D}$ and $\drv{E}$.}\quad
   \todo[inline, color=LimeGreen]{Complete.}
 
   \paragraph{Case: $\prp{A}$ is not the principial formula of the last
-  inference in $\prf{D}$.}\quad
+  inference in $\drv{D}$.}\quad
   \todo[inline, color=LimeGreen]{Complete.}
 
   \paragraph{Case: $\prp{A}$ is not the principal formula of the last
-  inference in $\prf{E}$.}\quad
+  inference in $\drv{E}$.}\quad
   \todo[inline, color=LimeGreen]{Complete.}
 
 \end{proof}

@@ -13,16 +13,28 @@
 \definecolor{red}{RGB}{227, 56, 61}
 \definecolor{blue}{RGB}{19, 80, 177}
 
-\NewDocumentCommand \sequent { o m }{
-  \IfNoValueTF{#1}
-    { \Gamma      \Longrightarrow {#2}  }
-    { \Gamma , {#1} \Longrightarrow {#2} }
+\NewDocumentCommand \sequent { o o m }{
+  \IfNoValueTF{#2}{
+    \IfNoValueTF{#1}{
+      \Gamma \Longrightarrow {\prp{#3}}
+    }{
+      \Gamma , {\prp{#1}} \Longrightarrow {\prp{#3}}
+    }
+  }{
+    \Gamma , {\prp{#1}}, {\prp{#2}} \Longrightarrow {\prp{#3}}
+  }
 }
 
-\NewDocumentCommand \sequentHat { o m }{
-  \IfNoValueTF{#1}
-    { \widehat{\Gamma}      \Longrightarrow {\color{blue} #2}  }
-    { \widehat{\Gamma} , {\color{blue} #1} \Longrightarrow {\color{blue} #2} }
+\NewDocumentCommand \sequentHat { o o m }{
+  \IfNoValueTF{#2}{
+    \IfNoValueTF{#1}{
+      \widehat{\Gamma} \Longrightarrow {\prp{#3}}
+    }{
+      \widehat{\Gamma} , {\prp{#1}} \Longrightarrow {\prp{#3}}
+    }
+  }{
+    \widehat{\Gamma} , {\prp{#1}}, {\prp{#2}} \Longrightarrow {\prp{#3}}
+  }
 }
 
 \usepackage{listings}
@@ -43,7 +55,7 @@
 \newcommand{\conjElim}{\ruleName{\times E}}
 
 \newcommand{\assert}[1]{{\color{Sepia} #1}\ {\color{gray} true}}
-\newcommand{\prf}[1]{{\color{red} \mathcal{#1}}}
+\newcommand{\drv}[1]{{\color{red} \mathcal{#1}}}
 \newcommand{\prp}[1]{{\color{blue} #1}}
 \newcommand{\subst}[3]{[#1 / \ruleName{#2}] #3}
 
