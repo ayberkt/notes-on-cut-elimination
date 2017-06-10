@@ -1,9 +1,11 @@
-i : type.
-o : type.
+i    : type.
+o    : type.
 
-→    : o -> o -> o.                                          %infix right 10 →.
+⊃    : o -> o -> o.                                          %infix right 10 ⊃.
 ∧    : o -> o -> o.                                          %infix none  9  ∧.
+⊤    : o.
 ∨    : o -> o -> o.                                          %infix none  8  ∨.
+⊥    : o.
 ∃    : (i -> o) -> o.
 ∀    : (i -> o) -> o.
 
@@ -12,5 +14,20 @@ conc : o -> type.
 
 axiom : (hyp A -> conc A).
 
-impl-left  : conc A -> (hyp B -> conc C) -> (hyp (A → B) -> conc C).
-impl-right : (hyp A -> conc B) -> conc (A → B).
+∧-right   : {A:o} {B:o} conc A -> conc B -> conc (A ∧ B).
+∧-left-1  : (hyp (A ∧ B) -> hyp A -> conc C) -> hyp (A ∧ B) -> conc C.
+∧-left-2  : (hyp (A ∧ B) -> hyp B -> conc C) -> hyp (A ∧ B) -> conc C.
+
+⊤-right   : conc ⊤.
+
+∨-left    :  (hyp (A ∨ B) -> hyp A -> conc C)
+          -> (hyp (A ∨ B) -> hyp B -> conc C)
+          -> (hyp (A ∨ B) -> conc C).
+∨-right-1 : conc A -> conc (A ∨ B).
+∨-right-2 : conc B -> conc (A ∨ B).
+
+⊃-right   : (hyp A -> conc B) -> conc (A ⊃ B).
+⊃-left    : (hyp (A ⊃ B) -> conc A) -> (hyp (A ⊃ B) -> hyp B -> conc C)
+          -> hyp (A ⊃ B) -> conc C.
+
+⊥-left    : hyp ⊥ -> conc C.
