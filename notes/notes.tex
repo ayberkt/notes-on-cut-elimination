@@ -193,19 +193,71 @@ which can only be verified if it is already on the left.
     \]
     By the IH on $\prp{A_1 \land A_2}$, $\drv{D}$, and
     ${\color{Red} \mathcal{E}_1}$ we may obtain some evidence $\drv{G}$
-    of $\sequent[A_1]{C}$. By the IH, again, on $\prp{A_1}$, $\drv{D}[1]$,
-    and $\drv{G}$, we obtain $\sequent{C}$.
+    of $\sequent[A_1]{C}$. By the IH, again, on $\prp{A_1}$,
+    $\drv{\widehat{D}}[1]$, and $\drv{G}$, we get $\sequent{C}$.
     \item \textbf{Subcase: $\prp{A} = \prp{\top}$.}
-    \todo[inline, color=LimeGreen]{TODO}
+    $\prp{\top}$ has only the right rule $\rightRule{\top R}$. So $\drv{D}$
+    must have the form:
+    \[
+      \begin{prooftree}
+        \infer0[$\rightRule{\top R}$.]{\sequent{\top}}
+      \end{prooftree}
+    \]
+    Since there are no left rules for $\prp{\top}$, for any $\Gamma$ with
+    $\sequent[\top]{C}$ it will also be the case that $\sequent{C}$. In
+    other words, $\drv{E}$ must have the form:
+    \[
+      \begin{prooftree}
+        \hypo{\drv{E}[1]}
+        \infer[no rule]1{\sequent{C}}
+        \infer1[,]{\sequent[\top]{C}}
+      \end{prooftree}
+    \]
+    in which $\drv{E}[1]$ constitutes evidence for $\sequent{C}$.
+
     \item \textbf{Subcase: $\prp{A}$ has the form $\prp{A_1 \lor A_2}$.}
-    \todo[inline, color=LimeGreen]{TODO}
+    In this case, $\drv{E}$ must be using either $\rightRule{\lor R_1}$
+    or $\rightRule{\lor R_2}$. If it is using $\rightRule{\lor R_1}$, then
+    $\drv{D}$ has the form:
+    \[
+      \begin{prooftree}
+        \hypo{\drv{D}[1]}
+        \infer[no rule]1{\sequent{A_1}}
+        \infer1[$\rightRule{\lor R_1}$]{\sequent{A_1 \lor A_2}}
+      \end{prooftree}
+    \]
+    whereas $\drv{E}$ uses $\leftRule{\lor L}$ in its last step:
+    \[
+      \begin{prooftree}
+        \hypo{\drv{E}[1]}
+        \infer[no rule]1{\sequent[A_1 \lor A_2][A_1]{C}}
+        \hypo{\drv{E}[2]}
+        \infer[no rule]1{\sequent[A_1 \lor A_2][A_2]{C}}
+        \infer2[$\leftRule{\lor L}$.]{\sequent[A_1 \lor A_2]{C}}
+      \end{prooftree}
+    \]
+    Note that we may weaken $\drv{D}$ with $\prp{A_1}$ to obtain a derivation
+    $\drv{\widehat{D}}$ that looks like:
+    \[
+      \begin{prooftree}
+        \hypo{\drv{\widehat{D}}[1]}
+        \infer[no rule]1{\sequent[A_1]{A_1}}
+        \infer1[$\rightRule{\lor R_1}$.]{\sequent[A_1]{A_1 \lor A_2}}
+      \end{prooftree}
+    \]
+    Now by using the IH on $\prp{A_1 \lor A_2}$, $\drv{\widehat{D}}$, and,
+    $\drv{E}[1]$ we get $\sequent[A]{C}$.
+
+    If $\drv{D}$ uses $\rightRule{\lor R_1}$, then we weaken it with
+    $\prp{A_2}$ and appeal to IH with $\drv{E}[2]$ instead.
+
     \item \textbf{Subcase: $\prp{A}$ has the form $\prp{A_1 \supset A_2}$.}
     \todo[inline, color=LimeGreen]{TODO}
     \item \textbf{Subcase: $\prp{A} = \prp{\bot}$.}
     \todo[inline, color=LimeGreen]{TODO}
   \end{itemize}
 
-  \paragraph{Case: $\prp{A}$ is not the principial formula of the last
+  \paragraph{Case: $\prp{A}$ is not the principal formula of the last
   inference in $\drv{D}$.}\quad
   \todo[inline, color=LimeGreen]{Complete.}
 
