@@ -195,25 +195,25 @@ which can only be verified if it is already on the left.
     ${\color{Red} \mathcal{E}_1}$ we may obtain some evidence $\drv{G}$
     of $\sequent[A_1]{C}$. By the IH, again, on $\prp{A_1}$,
     $\drv{\widehat{D}}[1]$, and $\drv{G}$, we get $\sequent{C}$.
-    \item \textbf{Subcase: $\prp{A} = \prp{\top}$.}
-    $\prp{\top}$ has only the right rule $\rightRule{\top R}$. So $\drv{D}$
-    must have the form:
-    \[
-      \begin{prooftree}
-        \infer0[$\rightRule{\top R}$.]{\sequent{\top}}
-      \end{prooftree}
-    \]
-    Since there are no left rules for $\prp{\top}$, for any $\Gamma$ with
-    $\sequent[\top]{C}$ it will also be the case that $\sequent{C}$. In
-    other words, $\drv{E}$ must have the form:
-    \[
-      \begin{prooftree}
-        \hypo{\drv{E}[1]}
-        \infer[no rule]1{\sequent{C}}
-        \infer1[,]{\sequent[\top]{C}}
-      \end{prooftree}
-    \]
-    in which $\drv{E}[1]$ constitutes evidence for $\sequent{C}$.
+    % \item \textbf{Subcase: $\prp{A} = \prp{\top}$.}
+    % $\prp{\top}$ has only the right rule $\rightRule{\top R}$. So $\drv{D}$
+    % must have the form:
+    % \[
+    %   \begin{prooftree}
+    %     \infer0[$\rightRule{\top R}$.]{\sequent{\top}}
+    %   \end{prooftree}
+    % \]
+    % Since there are no left rules for $\prp{\top}$, for any $\Gamma$ with
+    % $\sequent[\top]{C}$ it will also be the case that $\sequent{C}$. In
+    % other words, $\drv{E}$ must have the form:
+    % \[
+    %   \begin{prooftree}
+    %     \hypo{\drv{E}[1]}
+    %     \infer[no rule]1{\sequent{C}}
+    %     \infer1[,]{\sequent[\top]{C}}
+    %   \end{prooftree}
+    % \]
+    % in which $\drv{E}[1]$ constitutes evidence for $\sequent{C}$.
 
     \item \textbf{Subcase: $\prp{A}$ has the form $\prp{A_1 \lor A_2}$.}
     In this case, $\drv{E}$ must be using either $\rightRule{\lor R_1}$
@@ -252,9 +252,13 @@ which can only be verified if it is already on the left.
     $\prp{A_2}$ and appeal to IH with $\drv{E}[2]$ instead.
 
     \item \textbf{Subcase: $\prp{A}$ has the form $\prp{A_1 \supset A_2}$.}
-    \todo[inline, color=LimeGreen]{TODO}
-    \item \textbf{Subcase: $\prp{A} = \prp{\bot}$.}
-    \todo[inline, color=LimeGreen]{TODO}
+    This is to say that $\drv{D}$ looks like:
+    \[
+      \begin{prooftree}
+        \hypo{\sequent[A_1]{A_2}}
+        \infer1[$\rightRule{\supset R}$]{\sequent{A \supset A_2}}
+      \end{prooftree}
+    \]
   \end{itemize}
 
   \paragraph{Case: $\prp{A}$ is not the principal formula of the last
