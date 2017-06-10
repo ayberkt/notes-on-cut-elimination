@@ -8,6 +8,12 @@
 \usepackage[dvipsnames]{xcolor}
 \usepackage{ebproof}
 \usepackage{xparse}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=Bittersweet,
+  citecolor=RoyalBlue,
+}
 \usepackage[euler-digits]{eulervm}
 
 \definecolor{red}{RGB}{227, 56, 61}
@@ -37,6 +43,15 @@
   }
 }
 
+\NewDocumentCommand \drv { m o }{
+  \IfNoValueTF{#2}{
+    {\color{red} \mathcal{{#1}}}
+  }{
+    {\color{red} \mathcal{{#1}}_{#2}}
+  }
+}
+% \newcommand{\drv}[1]{{\color{red} \mathcal{#1}}}
+
 \usepackage{listings}
 \lstset{
   basicstyle=\footnotesize\ttfamily
@@ -55,7 +70,6 @@
 \newcommand{\conjElim}{\ruleName{\times E}}
 
 \newcommand{\assert}[1]{{\color{Sepia} #1}\ {\color{gray} true}}
-\newcommand{\drv}[1]{{\color{red} \mathcal{#1}}}
 \newcommand{\prp}[1]{{\color{blue} #1}}
 \newcommand{\subst}[3]{[#1 / \ruleName{#2}] #3}
 
