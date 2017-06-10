@@ -16,7 +16,7 @@
 \NewDocumentCommand \sequent { o m }{
   \IfNoValueTF{#1}
     { \Gamma      \Longrightarrow {#2}  }
-    { \Gamma , {\color{blue} #1} \Longrightarrow {#2} }
+    { \Gamma , {#1} \Longrightarrow {#2} }
 }
 
 \NewDocumentCommand \sequentHat { o m }{
@@ -31,6 +31,10 @@
 }
 
 \input{../../latex-basis/basis.tex}
+
+\newcommand{\leftRule}[1]{\color{ForestGreen} #1}
+\newcommand{\rightRule}[1]{\color{BurntOrange} #1}
+\newcommand{\initRule}{\color{Plum} \mathsf{init}}
 
 \newcommand{\ruleName}[1]{{\color{blue} #1}}
 \newcommand{\mkLabel}[1]{\RightLabel{\ruleName{#1}}}
