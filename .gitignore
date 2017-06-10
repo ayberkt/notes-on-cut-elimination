@@ -1,3 +1,8 @@
 *.pdf
 *.log
 *.aux
+notes/notes.bbl
+notes/notes.blg
+notes/notes.fdb_latexmk
+notes/notes.fls
+notes/notes.synctex.gz
