@@ -130,20 +130,32 @@ which can only be verified if it is already on the left.
   that $\sequentHat[\prp{P}]{C}$ and then since $\Gamma = (\Gamma, \prp{P})$,
   it is the case that $\sequent{\prp{C}}$.
 
-  \paragraph{Case: $\drv{E}$ is an initial sequent that uses the cut formula.}
-  In this case $\prp{C} = \prp{P}$ where $\prp{P}$ is some atomic formula,
-  $\Gamma = (\widehat{\Gamma}, \prp{P})$ and $\drv{E}$ has the form:
-  \[
-    \begin{prooftree}
-      \infer0[$\initRule$]{\sequentHat[\prp{P}, \prp{A}]{\prp{P}}}
-    \end{prooftree}
-  \]
-  As the $\initRule$ rule does not make use of $\prp{A}$ we may take that out
-  and the derivation would remain valid for $\sequentHat[\prp{P}]{\prp{P}}$.
-  Hence we have $\sequent{\prp{P}}$ i.e., $\sequent{\prp{C}}$.
+  \paragraph{Case: $\drv{E}$ is an initial sequent.}
 
-  \paragraph{Case: $\drv{E}$ is an initial sequent that does not use the cut
-  formula.}\quad\todo[inline, color=LimeGreen]{Complete}
+  \begin{itemize}
+    \item \textbf{Subcase: the initial sequent uses the cut formula.} So it
+    must be the case that $\prp{A} = \prp{C} = \prp{P}$. Hence $\drv{E}$ has
+    the form
+    \[
+      \begin{prooftree}
+        \infer0[$\initRule$.]{\sequent[P]{P}}
+      \end{prooftree}
+    \]
+    This means that $\drv{D}$ constitutes evidence for $\sequent{P}$ and hence
+    $\sequent{C}$.
+
+    \item \textbf{Subcase: the initial sequent does not use the cut formula.}
+    In this case $\prp{C} = \prp{P}$ where $\prp{P}$ is some atomic formula,
+    $\Gamma = (\widehat{\Gamma}, \prp{P})$ and $\drv{E}$ has the form:
+    \[
+      \begin{prooftree}
+        \infer0[$\initRule$]{\sequentHat[\prp{P}, \prp{A}]{\prp{P}}}
+      \end{prooftree}
+    \]
+    As the $\initRule$ rule does not make use of $\prp{A}$ we may take that out
+    and the derivation would remain valid for $\sequentHat[\prp{P}]{\prp{P}}$.
+    Hence we have $\sequent{\prp{P}}$ i.e., $\sequent{\prp{C}}$.
+  \end{itemize}
 
   \paragraph{Case: $\prp{A}$ is the principal formula of the final inference
   in both $\drv{D}$ and $\drv{E}$.}\quad
