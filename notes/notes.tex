@@ -158,8 +158,52 @@ which can only be verified if it is already on the left.
   \end{itemize}
 
   \paragraph{Case: $\prp{A}$ is the principal formula of the final inference
-  in both $\drv{D}$ and $\drv{E}$.}\quad
-  \todo[inline, color=LimeGreen]{Complete.}
+  in both $\drv{D}$ and $\drv{E}$.}
+  \begin{itemize}
+    \item \textbf{Subcase: $\prp{A}$ has the form $\prp{A_1 \land A_2}$.}
+    This implies that $\drv{D}$ uses $\rightRule{\land R}$ in its last step:
+    \[
+      \begin{prooftree}
+        \hypo{{\color{Red} \mathcal{D}_1}}
+        \infer[no rule]1{\sequent{A_1}}
+        \hypo{{\color{Red} \mathcal{D}_2}}
+        \infer[no rule]1{\sequent{A_2}}
+        \infer2[$\rightRule{\land R}$,]{\sequent{A_1 \land A_2}}
+      \end{prooftree}
+    \]
+    whereas $\drv{E}$ has the form:
+    \[
+      \begin{prooftree}
+        \hypo{{\color{Red} \mathcal{E}_1}}
+        \infer[no rule]1{\sequent[A_1 \land A_2][A_1]{C}}
+        \infer1[$\leftRule{\land L}$.]{\sequent[A_1 \land A_2]{C}}
+      \end{prooftree}
+    \]
+    To be able to make use of the induction hypothesis, we have to weaken
+    $\drv{D}$. We may do this without changing the structure of $\drv{D}$ which
+    is what we are interested in; let us call this $\drv{\widehat{D}}$:
+    \[
+      \begin{prooftree}
+        \hypo{\drv{\widehat{D}}[1]}
+        \infer[no rule]1{\sequent[A_1]{A_1}}
+        \hypo{\drv{\widehat{D}}[2]}
+        \infer[no rule]1{\sequent[A_1]{A_2}}
+        \infer2[$\rightRule{\land R}$.]{\sequent[A_1]{A_1 \land A_2}}
+      \end{prooftree}
+    \]
+    By the IH on $\prp{A_1 \land A_2}$, $\drv{D}$, and
+    ${\color{Red} \mathcal{E}_1}$ we may obtain some evidence $\drv{G}$
+    of $\sequent[A_1]{C}$. By the IH, again, on $\prp{A_1}$, $\drv{D}[1]$,
+    and $\drv{G}$, we obtain $\sequent{C}$.
+    \item \textbf{Subcase: $\prp{A} = \prp{\top}$.}
+    \todo[inline, color=LimeGreen]{TODO}
+    \item \textbf{Subcase: $\prp{A}$ has the form $\prp{A_1 \lor A_2}$.}
+    \todo[inline, color=LimeGreen]{TODO}
+    \item \textbf{Subcase: $\prp{A}$ has the form $\prp{A_1 \supset A_2}$.}
+    \todo[inline, color=LimeGreen]{TODO}
+    \item \textbf{Subcase: $\prp{A} = \prp{\bot}$.}
+    \todo[inline, color=LimeGreen]{TODO}
+  \end{itemize}
 
   \paragraph{Case: $\prp{A}$ is not the principial formula of the last
   inference in $\drv{D}$.}\quad
