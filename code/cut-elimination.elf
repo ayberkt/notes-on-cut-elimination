@@ -12,7 +12,7 @@ o    : type.
 hyp  : o -> type. %prefix 3 hyp.
 conc : o -> type. %prefix 3 conc.
 
-axiom : (hyp A -> conc A).
+axiom : hyp A -> conc A.
 
 ∧-right   : {A:o} {B:o} conc A -> conc B -> conc A ∧ B.
 ∧-left-1  : (hyp A ∧ B -> hyp A -> conc C) -> hyp A ∧ B -> conc C.
@@ -32,6 +32,7 @@ axiom : (hyp A -> conc A).
 
 ⊥-left    : hyp ⊥ -> conc C.
 
-init      : hyp P -> conc P.
+contraction : (hyp A -> hyp A -> conc C) -> (hyp A -> conc C) -> type.
+contract : contraction ([X] [Y] D : conc C) ([Y] D : conc C).
 
 admits-cut : conc A -> (hyp A -> hyp C) -> conc C -> type.
