@@ -9,25 +9,29 @@ o    : type.
 ∃    : (i -> o) -> o.
 ∀    : (i -> o) -> o.
 
-hyp  : o -> type.
-conc : o -> type.
+hyp  : o -> type. %prefix 3 hyp.
+conc : o -> type. %prefix 3 conc.
 
 axiom : (hyp A -> conc A).
 
-∧-right   : {A:o} {B:o} conc A -> conc B -> conc (A ∧ B).
-∧-left-1  : (hyp (A ∧ B) -> hyp A -> conc C) -> hyp (A ∧ B) -> conc C.
-∧-left-2  : (hyp (A ∧ B) -> hyp B -> conc C) -> hyp (A ∧ B) -> conc C.
+∧-right   : {A:o} {B:o} conc A -> conc B -> conc A ∧ B.
+∧-left-1  : (hyp A ∧ B -> hyp A -> conc C) -> hyp A ∧ B -> conc C.
+∧-left-2  : (hyp A ∧ B -> hyp B -> conc C) -> hyp A ∧ B -> conc C.
 
 ⊤-right   : conc ⊤.
 
-∨-left    :  (hyp (A ∨ B) -> hyp A -> conc C)
-          -> (hyp (A ∨ B) -> hyp B -> conc C)
-          -> (hyp (A ∨ B) -> conc C).
-∨-right-1 : conc A -> conc (A ∨ B).
-∨-right-2 : conc B -> conc (A ∨ B).
+∨-left    :  (hyp A ∨ B -> hyp A -> conc C)
+          -> (hyp A ∨ B -> hyp B -> conc C)
+          -> (hyp A ∨ B -> conc C).
+∨-right-1 : conc A -> conc A ∨ B.
+∨-right-2 : conc B -> conc A ∨ B.
 
-⊃-right   : (hyp A -> conc B) -> conc (A ⊃ B).
-⊃-left    : (hyp (A ⊃ B) -> conc A) -> (hyp (A ⊃ B) -> hyp B -> conc C)
-          -> hyp (A ⊃ B) -> conc C.
+⊃-right   : (hyp A -> conc B) -> conc A ⊃ B.
+⊃-left    : (hyp A ⊃ B -> conc A) -> (hyp A ⊃ B -> hyp B -> conc C)
+          -> hyp A ⊃ B -> conc C.
 
 ⊥-left    : hyp ⊥ -> conc C.
+
+init      : hyp P -> conc P.
+
+admits-cut : conc A -> (hyp A -> hyp C) -> conc C -> type.
