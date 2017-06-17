@@ -33,10 +33,26 @@ init : hyp P -> conc P.
 ⊥-left    : hyp ⊥ -> conc C.
 
 admits-cut : {A:o} conc A -> (hyp A -> conc C) -> conc C -> type.
-% mode admits-cut +A +D +C -F.
+% mode admits-cut +DA +DH +DC -F.
 
-case-A-init : admits-cut
-                (P : o)
-                (init (A' : hyp P) : conc P)
-                (D : hyp P -> conc C)
-                (D A').
+case-DA-init :
+  admits-cut
+    P
+    (init (A' : hyp P) : conc P)
+    (D : hyp P -> conc C)
+    (D A').
+
+case-DH-init-1 :
+  admits-cut
+    P
+    (DA : conc P)
+    (init : hyp P -> conc P)
+    A.
+
+case-A-principal-∧
+  : admits-cut
+      (A1 ∧ A2)
+      ((∧-right D1 D2) : conc A1 ∧ A2)
+      ((∧-left-1 ([X] [Y] E1)) : hyp A1 ∧ A2 -> conc C)
+      DIH
+ <- admits-cut (A1 ∧ A2) (∧-right D1 D2) ([X] E1) (DIH : conc C).
