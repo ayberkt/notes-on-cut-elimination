@@ -115,7 +115,7 @@ which can only be verified if it is already on the left.
     \item $\drv{E}$ for $\sequent[A]{C}$.
   \end{enumerate}
   We need to construct a derivation $\drv{F}$ for $\sequent{}{C}$.
-  We consider the following six cases.
+  We consider the following cases.
 
   \paragraph{Case: $\drv{D}$ is an initial sequent.} In this case
   $\prp{A}$ must be some atomic proposition $\prp{P}$ and $\drv{D}$
@@ -125,10 +125,10 @@ which can only be verified if it is already on the left.
         \infer0[$\initRule$]{\sequentHat[P]{P}}
       \end{prooftree}
   \]
-  So $\Gamma = (\widehat{\Gamma}, \prp{P})$ which implies that $\drv{E}$ proves
-  $\sequentHat[\prp{P}, \prp{P}]{C}$. From this, it follows by contraction
-  that $\sequentHat[\prp{P}]{C}$ and then since $\Gamma = (\Gamma, \prp{P})$,
-  it is the case that $\sequent{\prp{C}}$.
+  So $\Gamma = (\widehat{\Gamma}, \prp{P})$ which implies that $\drv{E}$ is a
+  derivation of $\sequentHat[\prp{P}, \prp{P}]{C}$. From this, it follows by
+  contraction that $\sequentHat[\prp{P}]{C}$ and then since $\Gamma = (\Gamma,
+  \prp{P})$, it is the case that $\sequent{\prp{C}}$.
 
   \paragraph{Case: $\drv{E}$ is an initial sequent.}
 
@@ -141,7 +141,7 @@ which can only be verified if it is already on the left.
         \infer0[$\initRule$.]{\sequent[P]{P}}
       \end{prooftree}
     \]
-    This means that $\drv{D}$ constitutes evidence for $\sequent{P}$ and hence
+    This means that $\drv{D}$ is a derivation of $\sequent{P}$ and hence
     $\sequent{C}$.
 
     \item \textbf{Subcase: the initial sequent does not use the cut formula.}
