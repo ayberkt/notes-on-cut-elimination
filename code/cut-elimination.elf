@@ -4,55 +4,36 @@ o    : type.
 ⊃    : o -> o -> o.                                          %infix right 10 ⊃.
 ∧    : o -> o -> o.                                          %infix none  9  ∧.
 ⊤    : o.
-∨    : o -> o -> o.                                          %infix none  8  ∨.
-⊥    : o.
-∃    : (i -> o) -> o.
-∀    : (i -> o) -> o.
+% ∨    : o -> o -> o.                                          %infix none  8  ∨.
+% ⊥    : o.
 
 hyp  : o -> type. %prefix 3 hyp.
 conc : o -> type. %prefix 3 conc.
 
 init : hyp P -> conc P.
 
-∧-right   : conc A -> conc B -> conc A ∧ B.
-∧-left-1  : (hyp A ∧ B -> hyp A -> conc C) -> (hyp A ∧ B -> conc C).
-∧-left-2  : (hyp A ∧ B -> hyp B -> conc C) -> (hyp A ∧ B -> conc C).
+∧-right : conc A -> conc B -> conc A ∧ B.
+∧-left  : (hyp A -> hyp B -> conc C) -> (hyp A ∧ B -> conc C).
 
 ⊤-right   : conc ⊤.
 
-∨-left    : (hyp A ∨ B -> hyp A -> conc C)
-         -> (hyp A ∨ B -> hyp B -> conc C)
-         -> (hyp A ∨ B -> conc C).
-∨-right-1 : conc A -> conc A ∨ B.
-∨-right-2 : conc B -> conc A ∨ B.
-
 ⊃-right   : (hyp A -> conc B) -> conc A ⊃ B.
-⊃-left    : (hyp A ⊃ B -> conc A) -> (hyp A ⊃ B -> hyp B -> conc C)
-         -> hyp A ⊃ B -> conc C.
-
-⊥-left    : hyp ⊥ -> conc C.
+⊃-left    : conc A -> (hyp B -> conc C)
+         -> (hyp A ⊃ B -> conc C).
 
 admits-cut : {A:o} conc A -> (hyp A -> conc C) -> conc C -> type.
-% mode admits-cut +DA +DH +DC -F.
+% mode admits-cut +A +D +E -F.
 
-case-DA-init :
+case-A-init :
   admits-cut
-    P
-    (init (A' : hyp P) : conc P)
-    (D : hyp P -> conc C)
-    (D A').
+    A
+    ((init (D : hyp A)) : conc A)
+    (E : hyp A -> conc A)
+    (E D).
 
-case-DH-init-1 :
+case-E-init :
   admits-cut
-    P
-    (DA : conc P)
-    (init : hyp P -> conc P)
-    A.
-
-case-A-principal-∧
-  : admits-cut
-      (A1 ∧ A2)
-      ((∧-right D1 D2) : conc A1 ∧ A2)
-      ((∧-left-1 ([X] [Y] E1)) : hyp A1 ∧ A2 -> conc C)
-      DIH
- <- admits-cut (A1 ∧ A2) (∧-right D1 D2) ([X] E1) (DIH : conc C).
+    A
+    (D : conc A)
+    ([h:hyp A] init h)
+    (D : conc A).
