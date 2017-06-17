@@ -24,16 +24,11 @@ init : hyp P -> conc P.
 admits-cut : {A:o} conc A -> (hyp A -> conc C) -> conc C -> type.
 % mode admits-cut +A +D +E -F.
 
-case-A-init :
-  admits-cut
-    A
-    ((init (D : hyp A)) : conc A)
-    (E : hyp A -> conc A)
-    (E D).
-
-case-E-init :
-  admits-cut
-    A
-    (D : conc A)
-    ([h:hyp A] init h)
-    (D : conc A).
+%% D is initial sequent
+init-D   : admits-cut P (init (D : hyp P) : conc P) E (E D).
+%% E is an initial sequent that uses the cut formula P.
+init-E-1 : admits-cut P (D : conc P) (init : hyp P -> conc P) D.
+%% E is an initial sequent but it concludes C using some other thing from the
+%% context. In this case we know that E' does not depend on the hypothesis P
+%% so we just strengthen it by getting rid of the dependency.
+init-E-1 : admits-cut P D ([_:hyp P] (E' : conc C)) E'.
